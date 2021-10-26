@@ -14,6 +14,7 @@ import Appointment from "components/Appointment/index.jsx";
 import Header from "components/Appointment/Header.jsx";
 import Empty from "components/Appointment/Empty.jsx";
 import Show from "components/Appointment/Show.jsx";
+import Confirm from "components/Appointment/Confirm.jsx";
 
 storiesOf("Button", module)
   .addParameters({
@@ -136,3 +137,9 @@ storiesOf("Appointment", module)
   .add("Header", () => <Header time="12pm"/>)
   .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
   .add("Show", () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")} />)
+  
+  .add("Confirm", () => 
+    <Confirm 
+      message="Delete the Appointment?"
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}/>)
