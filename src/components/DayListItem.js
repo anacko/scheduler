@@ -8,7 +8,7 @@ export default function DayListItem(props) {
     {'day-list__item--selected': props.selected},
     {'day-list__item--full': props.spots === 0},
   )
-  const handleClick = () => props.setDay(props.name)
+  const handleClick = () => props.onChange(props.name)
   const formatSpots = (spotsRemaining) => {
     if (!spotsRemaining) {
       return `no spots remaining`;
