@@ -11,6 +11,19 @@ const getAppointmentsForDay = (state, day) => {
   return apps ;
 }
 
+const getInterviewersForDay = (state, day) => {
+  const filteredInterviewers = state.days.filter(d => d.name === day);
+  if (!filteredInterviewers[0]) {
+    return [];
+  }
+  const dayInter = filteredInterviewers[0].interviewers
+  const inters = [];
+  for(const inter in dayInter) {
+     inters.push(dayInter[inter])
+   }
+  return inters;
+}
+
 const getInterview = (state, interview) => {
   
   if (!interview) { return null; }
@@ -24,4 +37,4 @@ const getInterview = (state, interview) => {
   });
 }
 
-export { getAppointmentsForDay, getInterview }
+export { getAppointmentsForDay, getInterviewersForDay, getInterview }
