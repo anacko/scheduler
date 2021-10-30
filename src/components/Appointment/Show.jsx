@@ -1,20 +1,16 @@
 import React from 'react';
 
-/* 
-student:String eg. "Lydia Miller-Jones"
-interviewer:Object we can use the interview object that already exists in stories/index.js for this
-onEdit:Function to be called when the user clicks the Edit button
-onDelete:Function to be called when the user clicks the Delete button
-*/
-
 export default function Show(props){
+
+console.log("my props for show",props)
+
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
-        <h2 className="text--regular">Lydia Miller-Jones</h2>
+        <h2 className="text--regular">{props.interview.student}</h2>
         <section className="interviewer">
           <h4 className="text--light">Interviewer</h4>
-          <h3 className="text--regular">Sylvia Palmer</h3>
+          <h3 className="text--regular">{props.interview.interviewer.name}</h3>
         </section>
       </section>
       <section className="appointment__card-right">

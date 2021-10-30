@@ -5,12 +5,12 @@ import Empty from './Empty';
 import Show from './Show';
 
 export default function Appointment (props) {
-  
+  console.log('props in Appointment', props)
   return (
   <Fragment>
     <article className="appointment">
       <Header time={props.time}/>
-      {props.interview ? <Show /> : <Empty />}
+      {props.interview ? <Show interview={props.interview}/> : <Empty />}
     </article>
     
   </Fragment>
