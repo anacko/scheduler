@@ -17,10 +17,23 @@ const getInterviewersForDay = (state, day) => {
     return [];
   }
   const dayInter = filteredInterviewers[0].interviewers
-  const inters = [];
+  const intersArr = [];
   for(const inter in dayInter) {
-     inters.push(dayInter[inter])
-   }
+     intersArr.push(dayInter[inter])
+  }
+  return intersArr;
+}
+
+const getInterviewersForDayInObjectForm = (state, day) => {
+  const filteredInterviewers = state.days.filter(d => d.name === day);
+  if (!filteredInterviewers[0]) {
+    return [];
+  }
+  const dayInter = filteredInterviewers[0].interviewers
+  const inters = [];
+  for (const inter of dayInter) {
+    inters.push(state.interviewers[[inter].toString()])
+  }
   return inters;
 }
 
@@ -37,4 +50,4 @@ const getInterview = (state, interview) => {
   });
 }
 
-export { getAppointmentsForDay, getInterviewersForDay, getInterview }
+export { getAppointmentsForDay, getInterviewersForDay, getInterview, getInterviewersForDayInObjectForm }

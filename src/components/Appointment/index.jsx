@@ -7,7 +7,7 @@ import Form from './Form';
 import useVisualMode from 'hooks/useVisualMode';
 
 export default function Appointment (props) {
-  //console.log('props in Appointment', props)
+  console.log('props in Appointment', props)
   const EMPTY = 'EMPTY';
   const SHOW = 'SHOW';
 
@@ -15,16 +15,26 @@ export default function Appointment (props) {
 
   const handleAdd = () => transition('CREATE');
   const handleCancel = () => back();
-  
+
   return (
   <Fragment>
     <article className="appointment">
       <Header time={props.time}/>
       {mode === 'EMPTY' && <Empty onAdd={handleAdd} />}
       {mode === 'SHOW' && <Show interview={props.interview} /> }
-      {mode === 'CREATE' && <Form onCancel={handleCancel}/>}
+      {mode === 'CREATE' && <Form onCancel={handleCancel} interviewers={props.interviewers}/>}
     </article>
     
   </Fragment>
   );
 }
+
+/* PROPS!
+<Appointment 
+      key={appointment.id}
+      id={appointment.id}
+      time={appointment.time}
+      interview={interview}
+      interviewers={dailyInterviewers}
+      />
+*/
