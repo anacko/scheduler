@@ -1,8 +1,7 @@
 import React from 'react';
 
 export default function Show(props){
-
-console.log("my props for show",props)
+  console.log("props in show:", props)
 
   return (
     <main className="appointment__card appointment__card--show">

@@ -6,7 +6,6 @@ import DayList from "./DayList";
 import Appointment from "components/Appointment";
 
 import {getAppointmentsForDay} from "helpers/selectors";
-import {getInterviewersForDay} from "helpers/selectors";
 import {getInterviewersForDayInObjectForm} from "helpers/selectors";
 import {getInterview} from "helpers/selectors";
 
@@ -36,9 +35,23 @@ export default function Application(props) {
     })
   }, []);
 
+  const bookInterview = (id, interview) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({...state, appointments});
+    axios.post(`/api/appointments/${id}`, interview) // <<<< NOT WORKING (Error 404)
+      .then(() => console.log(interview))
+      .then(() => setState({...state, appointments}))
+  };
+
   const dailyAppointments = getAppointmentsForDay(state, state.day)
   const dailyInterviewers = getInterviewersForDayInObjectForm(state, state.day)
-  console.log("dailyIntervieweres in Application:",dailyInterviewers)
   const listAppointments = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview, appointment);
     return <Appointment 
@@ -47,6 +60,7 @@ export default function Application(props) {
       time={appointment.time}
       interview={interview}
       interviewers={dailyInterviewers}
+      bookInterview={bookInterview}
       />
   });
 
