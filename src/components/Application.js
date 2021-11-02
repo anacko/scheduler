@@ -28,10 +28,11 @@ export default function Application(props) {
 
     ]).then( all => {
       console.log(all)
-      setState({ ...state, 
+      setState(state => ({ ...state, 
         days: all[0].data, 
         appointments: all[1].data, 
-        interviewers: all[2].data}) 
+        interviewers: all[2].data}
+      )) 
     })
   }, []);
 
@@ -44,11 +45,28 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({...state, appointments});
-    axios.post(`/api/appointments/${id}`, interview) // <<<< NOT WORKING (Error 404)
-      .then(() => console.log(interview))
-      .then(() => setState({...state, appointments}))
+    return (
+      axios
+        .put(`/api/appointments/${id}`, {interview})
+        .then(() => setState(state => ({...state, appointments})))
+    )
   };
+
+  const cancelInterview = (id) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return (
+      axios
+        .delete(`/api/appointments/${id}`)
+        .then(() => setState(state => ({...state, appointments})))
+    )
+  }
 
   const dailyAppointments = getAppointmentsForDay(state, state.day)
   const dailyInterviewers = getInterviewersForDayInObjectForm(state, state.day)
@@ -61,6 +79,7 @@ export default function Application(props) {
       interview={interview}
       interviewers={dailyInterviewers}
       bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
       />
   });
 
