@@ -1,5 +1,6 @@
 import {getAppointmentsForDay} from "./selectors";
 import {getInterviewersForDay} from "./selectors";
+import {getInterviewersForDayInObjectForm} from "./selectors";
 import {getInterview} from "./selectors";
 
 const state = {
@@ -8,26 +9,26 @@ const state = {
       id: 1,
       name: "Monday",
       appointments: [1, 2, 3],
-      interviewers: {"1": {
+      interviewers: [{
         "id": 1,
         "name": "Sylvia Palmer",
         "avatar": "https://i.imgur.com/LpaY82x.png"
         },
-        "2": {
+        {
         "id": 2,
         "name": "Tori Malcolm",
         "avatar": "https://i.imgur.com/Nmx0Qxo.png"
-        }}
+        }]
     },
     {
       id: 2,
       name: "Tuesday",
       appointments: [4, 5],
-      interviewers: {"2": {
+      interviewers: [{
         "id": 2,
         "name": "Tori Malcolm",
         "avatar": "https://i.imgur.com/Nmx0Qxo.png"
-        }}
+        }]
     }
   ],
   appointments: {
@@ -111,9 +112,6 @@ test("getInterviewersForDay returns an empty array when the day is not found", (
   const result = getInterviewersForDay(state, "Wednesday");
   expect(result.length).toEqual(0);
 });
-
-
-
 
 test("getInterview returns an object with the interviewer data", () => {
   const result = getInterview(state, state.appointments["3"].interview);
