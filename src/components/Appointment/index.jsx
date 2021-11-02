@@ -22,20 +22,17 @@ export default function Appointment (props) {
       student: name,
       interviewer
     };
-    transition('STATUS-SAVING')
-    props.bookInterview(props.id, interview)
-      .then(() => {
-        transition('SHOW')
-      })
+    transition('STATUS-SAVING', 'replace')
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition('SHOW'))
       .catch(() => transition('ERROR', 'replace'))
   }
 
   const handleDelete = () => {
-    transition('STATUS-DELETING')
+    transition('STATUS-DELETING', 'replace')
     props.cancelInterview(props.id)
-      .then(() => {
-        transition('EMPTY')
-      })
+      .then(() => transition('EMPTY'))
       .catch(() => transition('ERROR', 'replace'))
   }
 
