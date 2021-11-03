@@ -27,6 +27,7 @@ export default function Form(props){
             placeholder="Enter Student Name"
             value={student}
             onChange={handleStudentChange}
+            data-testid="student-name-input"
           />
         </form>
         <InterviewerList
