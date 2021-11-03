@@ -26,7 +26,8 @@ describe("Appointments", () => {
 
   it('should cancel an interview', () => {
     cy.get('[alt="Delete"]').first().click({force: true});
-    cy.get('.appointment__actions > :nth-child(2)').click();
+    //cy.get('.appointment__actions > :nth-child(2)').click();
+    cy.contains("Delete").click();
     cy.contains("Deleting").should("exist");
     cy.contains("Deleting").should("not.exist");
     cy.contains(".appointment__card--show", "Archie Cohen").should("not.exist");
