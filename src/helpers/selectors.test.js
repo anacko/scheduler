@@ -1,7 +1,4 @@
-import {getAppointmentsForDay} from "./selectors";
-import {getInterviewersForDay} from "./selectors";
-import {getInterviewersForDayInObjectForm} from "./selectors";
-import {getInterview} from "./selectors";
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "./selectors";
 
 const state = {
   days: [
