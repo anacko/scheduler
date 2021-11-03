@@ -10,13 +10,13 @@ export default function useVisualMode(initial) {
     if (replace) {
       setHistory(history => ([...history.slice(0,-1), newMode]))
     } else {
-      setHistory(prev => ([...prev, newMode]))
+      setHistory(history => ([...history, newMode]))
     }
   }
   
   const back = () => {
-    setHistory([...history.slice(0,-1)])
-    setMode(history[history.length - 1])
+    setHistory(history => ([...history.slice(0,-1)]))
+    setMode(history[history.length - 2])
   };
 
   return { mode, transition, back };
