@@ -6,12 +6,18 @@ Interview Scheduler is a modern client application, created with React. It allow
 
 ## Setup
 
+### Installing...
 Install dependencies with `npm install`.
 
 The Scheduler uses an API server to persist the interview data to a database. Source files and instructions: [scheduler-api](https://github.com/lighthouse-labs/scheduler-api).
 
+### Running...
+
 Run Webpack Development Server with `npm start`.
 
+Important! It is required both the Scheduler App and the Scheduler API running for the application to work properly.
+
+### Testing...
 Run Jest Test Framework with `npm test`.
 
 Run Storybook Visual Testbed with `npm run storybook`.
